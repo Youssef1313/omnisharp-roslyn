@@ -91,7 +91,7 @@ namespace OmniSharp.Tests
         {
             var testFile = new TestFile(fileName, source);
             SharedOmniSharpTestHost.AddFilesToWorkspace(testFile);
-            var nodes = await StructureComputer.Compute(SharedOmniSharpTestHost.Workspace.GetDocuments(testFile.FileName));
+            var nodes = await CSharpStructureComputer.Compute(SharedOmniSharpTestHost.Workspace.GetDocuments(testFile.FileName));
             return nodes.ToArray();
         }
     }

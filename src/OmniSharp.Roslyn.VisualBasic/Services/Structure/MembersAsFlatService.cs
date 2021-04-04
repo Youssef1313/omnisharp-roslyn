@@ -22,7 +22,7 @@ namespace OmniSharp.Roslyn.VisualBasic.Services.Structure
 
         public async Task<IEnumerable<QuickFix>> Handle(MembersFlatRequest request)
         {
-            var stack = new List<FileMemberElement>(await StructureComputer.Compute(_workspace.GetDocuments(request.FileName)));
+            var stack = new List<FileMemberElement>(await VisualBasicStructureComputer.Compute(_workspace.GetDocuments(request.FileName)));
             var ret = new List<QuickFix>();
             while (stack.Count > 0)
             {

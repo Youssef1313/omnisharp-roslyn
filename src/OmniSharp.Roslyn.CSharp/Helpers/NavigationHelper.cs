@@ -11,7 +11,7 @@ namespace OmniSharp.Helpers
     {
         public static async Task<NavigateResponse> Navigate(OmniSharpWorkspace workspace, Request request, Func<FileMemberElement, FileMemberElement, Request, bool> IsCloserNode)
         {
-            var stack = new List<FileMemberElement>(await StructureComputer.Compute(workspace.GetDocuments(request.FileName)));
+            var stack = new List<FileMemberElement>(await CSharpStructureComputer.Compute(workspace.GetDocuments(request.FileName)));
             var response = new NavigateResponse();
             //Retain current line in case we dont need to navigate.
             response.Line = request.Line;

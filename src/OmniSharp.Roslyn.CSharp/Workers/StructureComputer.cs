@@ -12,7 +12,7 @@ using OmniSharp.Models.MembersTree;
 
 namespace OmniSharp
 {
-    public class StructureComputer : CSharpSyntaxWalker
+    public class CSharpStructureComputer : CSharpSyntaxWalker
     {
         private readonly Stack<FileMemberElement> _roots = new Stack<FileMemberElement>();
         private readonly IEnumerable<ISyntaxFeaturesDiscover> _featureDiscovers;
@@ -24,7 +24,7 @@ namespace OmniSharp
             IEnumerable<ISyntaxFeaturesDiscover> featureDiscovers)
         {
             var root = new FileMemberElement() { ChildNodes = new List<FileMemberElement>() };
-            var visitor = new StructureComputer(root, featureDiscovers);
+            var visitor = new CSharpStructureComputer(root, featureDiscovers);
 
             foreach (var document in documents)
             {
@@ -37,7 +37,7 @@ namespace OmniSharp
         public static Task<IEnumerable<FileMemberElement>> Compute(IEnumerable<Document> documents) 
             => Compute(documents, Enumerable.Empty<ISyntaxFeaturesDiscover>());
 
-        private StructureComputer(FileMemberElement root, IEnumerable<ISyntaxFeaturesDiscover> featureDiscovers)
+        private CSharpStructureComputer(FileMemberElement root, IEnumerable<ISyntaxFeaturesDiscover> featureDiscovers)
         {
             _featureDiscovers = featureDiscovers ?? Enumerable.Empty<ISyntaxFeaturesDiscover>();
             _roots.Push(root);
